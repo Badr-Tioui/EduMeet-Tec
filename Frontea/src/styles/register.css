@@ -1,0 +1,977 @@
+/* =====================================================
+   REGISTER — EduMeet (Desktop 100vh, card à droite)
+===================================================== */
+
+/* =============== TOKENS =============== */
+:root {
+  --primary: #3B82F6;
+  --secondary: #22C55E;
+
+  --bg-0: #050B1A;
+  --bg-1: #0B2A4A;
+  --bg-2: #0E3A63;
+  --bg-3: #0E6A5A;
+
+  --card: rgba(15, 23, 42, 0.78);
+  --card-2: rgba(2, 6, 23, 0.55);
+
+  --border: rgba(255, 255, 255, 0.10);
+  --border-soft: rgba(255, 255, 255, 0.06);
+
+  --text: #EAF2FF;
+  --muted: rgba(234, 242, 255, 0.72);
+  --muted-2: rgba(234, 242, 255, 0.55);
+
+  --shadow-lg: 0 26px 70px rgba(0, 0, 0, 0.34);
+  --shadow-md: 0 18px 45px rgba(0, 0, 0, 0.26);
+
+  --r-md: 14px;
+  --r-lg: 18px;
+  --r-xl: 28px;
+
+  --blur: 10px;
+}
+
+/* =============== RESET =============== */
+.register-page *,
+.register-page *::before,
+.register-page *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+
+.register-page body {
+  height: 100%;
+}
+
+body.register-page {
+  font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: var(--text);
+
+  height: 100vh;
+  overflow: hidden; /* ✅ pas de scroll desktop */
+
+  display: flex;
+
+  background:
+    radial-gradient(1100px 750px at 20% 25%, rgba(59, 130, 246, 0.40) 0%, transparent 60%),
+    radial-gradient(900px 650px at 78% 70%, rgba(34, 197, 94, 0.16) 0%, transparent 55%),
+    linear-gradient(135deg, var(--bg-0) 0%, var(--bg-1) 30%, var(--bg-2) 60%, var(--bg-3) 100%);
+
+  background-size: 180% 180%;
+  animation: bgFlow 28s ease infinite;
+}
+
+@keyframes bgFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* =============== LAYOUT =============== */
+.register-page .container {
+  width: 100%;
+            /* ✅ full viewport */
+  display: flex;
+
+
+display: flex;
+gap: 370px;
+
+}
+
+/* 2 colonnes */
+.register-page .left,
+.register-page .right {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  padding: 2.5rem 2rem;
+}
+
+/* LEFT — Branding */
+.register-page .left {
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+}
+
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-22px); }
+}
+
+.register-page .brand {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  font-weight: 900;
+   left: 68px;
+}
+
+.register-page .brand-icon {
+  font-size: 52px;
+  filter: drop-shadow(0 14px 30px rgba(0, 0, 0, 0.35));
+}
+
+.register-page .brand-name {
+  font-size: 44px;
+  font-weight: 950;
+  letter-spacing: .2px;
+
+  background: linear-gradient(135deg, #FFFFFF, #93C5FD);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.register-page .brand-text {
+  text-align: center;
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 18px;
+ 
+  line-height: 1.5;
+  position: relative;
+  left: 89px;
+
+}
+
+/* RIGHT — Card à droite */
+.register-page .right {
+  justify-content: flex-end; /* ✅ pousse vers la droite */
+  padding-right: clamp(2rem, 6vw, 6rem); /* ✅ responsive spacing */
+  padding-left: 1rem;
+}
+
+/* =============== CARD =============== */
+.register-page .card {
+  width: 551px;
+  
+  padding: 1rem 3rem 1rem 3rem;
+  border-radius: var(--r-xl);
+  padding: 2.2rem 2.6rem;
+
+  background: linear-gradient(18deg, var(--card) 100%, var(--bg-3) 10%);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-lg);
+
+  backdrop-filter: blur(var(--blur));
+  -webkit-backdrop-filter: blur(var(--blur));
+
+  animation: zoomIn 0.9s ease both;
+  position: relative;
+
+
+  /* Remove left: 200px and center naturally */
+
+}
+
+@keyframes zoomIn {
+  from { transform: translateY(10px) scale(0.985); opacity: 0; }
+  to   { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+/* Header */
+.register-page .form-header {
+  text-align: center;
+  margin-bottom: 1.6rem;
+  animation: fadeUp 0.75s ease both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.register-page .form-icon {
+  font-size: 2.4rem;
+  margin-bottom: 0.4rem;
+  filter: drop-shadow(0 6px 18px rgba(59, 130, 246, 0.45));
+}
+
+.register-page .form-title {
+  font-size: 1.55rem;
+  font-weight: 950;
+  background: linear-gradient(135deg, #93C5FD, #22C55E);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.25rem;
+}
+
+.register-page .form-desc {
+  font-size: .85rem;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+/* =============== FORM =============== */
+.register-page form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px; /* ✅ compact pour éviter overflow */
+}
+
+.register-page .field {
+  position: relative;
+}
+
+.register-page .field input {
+  width: 100%;
+  padding: 14px 44px 14px 16px; /* ✅ reserve pour l’œil */
+  border-radius: var(--r-md);
+  border: 1px solid var(--border);
+  outline: none;
+
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text);
+
+  font-size: 14px;
+  transition: border-color .15s ease, box-shadow .15s ease, background .15s ease;
+}
+
+.register-page .field input:focus {
+  border-color: rgba(34, 197, 94, 0.85);
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.16);
+  background: rgba(255, 255, 255, 0.085);
+}
+
+/* label flottant (tu le masques déjà : on le garde clean) */
+.register-page .field label {
+  position: absolute;
+  top: 50%;
+  left: 16px;
+  transform: translateY(-50%);
+  color: var(--muted);
+  font-size: 12px;
+  pointer-events: none;
+  transition: opacity .2s ease;
+}
+
+/* ✅ Masquer label quand focus/valeur */
+.register-page .field input:focus + label,
+.register-page .field input:not(:placeholder-shown) + label {
+  opacity: 0;
+}
+
+/* =============== EYE TOGGLE =============== */
+.register-page .password-field {
+  position: relative;
+}
+
+.register-page .eye-wrapper {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(34, 197, 94, 0.65);
+  border-radius: 10px;
+  cursor: pointer;
+
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+
+  transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease, filter .15s ease;
+}
+
+.register-page .eye-wrapper:hover {
+  transform: translateY(-50%) scale(1.06);
+  border-color: rgba(59, 130, 246, 0.75);
+  box-shadow: 0 16px 34px rgba(59, 130, 246, 0.18);
+  filter: brightness(1.1);
+}
+
+.register-page .eye-wrapper svg {
+  stroke: var(--muted);
+}
+
+.register-page .eye-wrapper:hover svg {
+  stroke: var(--text);
+}
+
+/* =============== BUTTON =============== */
+.register-page .badr {
+  width: 100%;
+  padding: 12px 14px;
+  margin-top: 6px;
+
+  border: none;
+  border-radius: 16px;
+
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: #fff;
+
+  font-size: 16px;
+  font-weight: 650;
+  letter-spacing: .2px;
+  cursor: pointer;
+
+  box-shadow: 0 16px 44px rgba(59, 130, 246, 0.22);
+  transition: transform .12s ease, filter .12s ease;
+}
+
+.register-page .badr:hover {
+  transform: translateY(-5px);
+  filter: brightness(1.15);
+}
+
+.register-page .badr:active {
+  transform: translateY(0);
+  filter: brightness(0.98);
+}
+
+/* =============== FOOTER =============== */
+.register-page .footer {
+  margin-top: .8rem;
+  text-align: center;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.register-page .footer a {
+  color: var(--text);
+  font-weight: 900;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  transition: color .15s ease, border-color .15s ease;
+}
+
+.register-page .footer a:hover {
+  color: #93C5FD;
+  border-color: rgba(147, 197, 253, 0.55);
+}
+
+/* =============== SUCCESS OVERLAY (inchangé, mais clean) =============== */
+.success-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.success-card {
+  width: min(560px, calc(100% - 32px));
+  padding: 36px 31px;
+  border-radius: 24px;
+  text-align: center;
+
+  background: radial-gradient(circle at top, #119a8f, #052a3b);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.96); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.success-icons { font-size: 32px; margin-bottom: 12px; }
+.success-title { font-size: 28px; font-weight: 700; color: #5eead4; margin-bottom: 12px; }
+.success-text  { font-size: 16px; line-height: 1.6; color: #cbd5e1; margin-bottom: 28px; }
+
+.success-btn {
+  background: linear-gradient(135deg, #14b8a6, #0ea5e9);
+  color: white;
+  border: none;
+  padding: 17px 30px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.success-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(14, 165, 233, 0.4);
+}
+
+.success-footer {
+  margin: 0 6px;
+  font-size: 20px;
+  position: relative;
+  top: 14px;
+  animation: floatIcon 2.2s ease-in-out infinite;
+}
+
+@keyframes floatIcon {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
+}
+
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   VERSION MOBILE OPTIMISÉE - PAGE REGISTER
+===================================================== */
+
+/* =====================================================
+   MOBILE (≤ 900px) - LAYOUT COMPACT
+===================================================== */
+@media (max-width: 900px) {
+  /* RESET DU BODY */
+  body.register-page {
+    height: auto;
+    min-height: 100vh;
+    overflow-y: auto !important; /* Scroll activé sur mobile */
+    background-size: 250% 250%;
+    animation: bgFlow 35s ease infinite;
+    display: block; /* Change de flex à block pour le scroll */
+  }
+  
+  /* SUPPRESSION DU SCROLL BLOCKÉ */
+  body.register-page,
+  .register-page .container {
+    overflow: visible;
+    height: auto;
+  }
+  
+  /* CONTAINER MOBILE */
+  .register-page .container {
+    flex-direction: column !important;
+    gap: 0 !important;
+    width: 100% !important;
+    min-height: 100vh;
+    display: flex !important;
+  }
+  
+  /* SUPPRESSION DES POSITIONS ABSOLUES PROBLÉMATIQUES */
+  .register-page .brand,
+
+  .register-page .card,
+  .register-page .form-title,
+  .register-page .form-desc,
+  .register-page form,
+  .register-page .field input,
+  .register-page .badr {
+    position: static !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  
+  /* SECTION GAUCHE - BRANDING */
+  .register-page .left {
+    width: 100% !important;
+    padding: 2.5rem 1.5rem 1.5rem !important;
+    display: flex !important;
+    flex-direction: column;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center;
+    min-height: auto;
+    order: 1; /* Met en premier sur mobile */
+  }
+
+    .register-page .brand-text
+    {
+      display: none;
+    }
+  
+  /* HALO MOBILE */
+  .register-page .left::before {
+    content: '';
+    position: absolute;
+    width: 280px;
+    height: 280px;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.25) 0%, transparent 70%);
+    filter: blur(40px);
+    opacity: 0.3;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 0;
+  }
+  
+  /* BRAND MOBILE */
+  .register-page .brand {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+    z-index: 1;
+  }
+  
+  .register-page .brand-icon {
+    font-size: 42px !important;
+    margin-bottom: 0.5rem;
+    filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.4)) !important;
+  }
+  
+  .register-page .brand-name {
+    font-size: 2rem !important;
+    font-weight: 950;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, #FFFFFF, #93C5FD) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+  }
+  
+  .register-page .brand-text {
+    font-size: 1rem !important;
+    line-height: 1.5;
+    max-width: 90%;
+    margin: 0 auto;
+    text-align: center;
+    font-weight: 500;
+    color: var(--muted);
+    padding: 0 !important;
+  }
+  
+  /* SECTION DROITE - FORMULAIRE */
+  .register-page .right {
+    width: 100% !important;
+    padding: 0 1.5rem 3rem !important;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    min-height: auto;
+    order: 2; /* Met en second sur mobile */
+  }
+  
+  /* CARD MOBILE - COULEUR ORIGINALE PRÉSERVÉE */
+  .register-page .card {
+    width: 100% !important;
+    max-width: 450px !important;
+    padding: 2rem 1.5rem !important;
+    margin: 0 auto;
+    border-radius: 24px !important;
+    /* GARDE LA MÊME COULEUR QUE LA VERSION DESKTOP */
+    background: linear-gradient(18deg, var(--card) 100%, var(--bg-3) 10%) !important;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-lg);
+    backdrop-filter: blur(var(--blur));
+    -webkit-backdrop-filter: blur(var(--blur));
+    animation: zoomIn 0.6s ease both;
+  }
+  
+  /* HEADER FORMULAIRE */
+  .register-page .form-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .register-page .form-icon {
+    font-size: 2rem !important;
+    margin-bottom: 0.5rem;
+    filter: drop-shadow(0 6px 16px rgba(59, 130, 246, 0.4)) !important;
+  }
+  
+  .register-page .form-title {
+    font-size: 1.5rem !important;
+    font-weight: 950;
+    background: linear-gradient(135deg, #93C5FD, #22C55E) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    margin-bottom: 0.5rem;
+  }
+  
+  .register-page .form-desc {
+    font-size: 0.85rem !important;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+  
+  /* FORMULAIRE MOBILE */
+  .register-page form {
+    display: flex !important;
+    flex-direction: column;
+    gap: 1.25rem !important;
+  }
+  
+  .register-page .field {
+    width: 100%;
+  }
+  
+  .register-page .field input {
+    width: 100% !important;
+    padding: 14px 44px 14px 16px !important;
+    font-size: 15px !important;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.06) !important;
+    border: 1px solid var(--border) !important;
+    color: var(--text);
+  }
+  
+  .register-page .field input:focus {
+    border-color: rgba(34, 197, 94, 0.85) !important;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.16) !important;
+    background: rgba(255, 255, 255, 0.085) !important;
+  }
+  
+  /* LABEL FLOATING */
+  .register-page .field label {
+    font-size: 12px !important;
+    left: 16px !important;
+    color: var(--muted) !important;
+    background: transparent !important;
+    padding: 0 !important;
+  }
+  
+  .register-page .field input:focus + label,
+  .register-page .field input:not(:placeholder-shown) + label {
+    opacity: 0;
+  }
+  
+  /* EYE TOGGLE MOBILE - STYLE ORIGINAL */
+  .register-page .eye-wrapper {
+    position: absolute !important;
+    right: 12px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    width: 36px !important;
+    height: 36px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border: 1px solid rgba(34, 197, 94, 0.65) !important;
+    border-radius: 10px !important;
+    cursor: pointer !important;
+    background: rgba(255, 255, 255, 0.04) !important;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18) !important;
+    transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease, filter .15s ease !important;
+  }
+  
+  .register-page .eye-wrapper:hover {
+    transform: translateY(-50%) scale(1.06) !important;
+    border-color: rgba(59, 130, 246, 0.75) !important;
+    box-shadow: 0 16px 34px rgba(59, 130, 246, 0.18) !important;
+    filter: brightness(1.1) !important;
+  }
+  
+  .register-page .eye-wrapper svg {
+    stroke: var(--muted) !important;
+  }
+  
+  .register-page .eye-wrapper:hover svg {
+    stroke: var(--text) !important;
+  }
+  
+  /* BOUTON MOBILE - STYLE ORIGINAL */
+  .register-page .badr {
+    width: 100% !important;
+    padding: 12px 14px !important;
+    margin-top: 6px !important;
+    border: none !important;
+    border-radius: 16px !important;
+    background: linear-gradient(135deg, var(--primary), var(--secondary)) !important;
+    color: #fff !important;
+    font-size: 16px !important;
+    font-weight: 650 !important;
+    letter-spacing: .2px !important;
+    cursor: pointer !important;
+    box-shadow: 0 16px 44px rgba(59, 130, 246, 0.22) !important;
+    transition: transform .12s ease, filter .12s ease !important;
+  }
+  
+  .register-page .badr:hover {
+    transform: translateY(-5px) !important;
+    filter: brightness(1.15) !important;
+  }
+  
+  .register-page .badr:active {
+    transform: translateY(0) !important;
+    filter: brightness(0.98) !important;
+  }
+  
+  /* FOOTER MOBILE - STYLE ORIGINAL */
+  .register-page .footer {
+    margin-top: 0.8rem !important;
+    text-align: center !important;
+    font-size: 13px !important;
+    color: var(--muted) !important;
+  }
+  
+  .register-page .footer a {
+    color: var(--text) !important;
+    font-weight: 900 !important;
+    text-decoration: none !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18) !important;
+    transition: color .15s ease, border-color .15s ease !important;
+  }
+  
+  .register-page .footer a:hover {
+    color: #93C5FD !important;
+    border-color: rgba(147, 197, 253, 0.55) !important;
+  }
+}
+
+/* =====================================================
+   PETITS MOBILES (≤ 480px)
+===================================================== */
+@media (max-width: 480px) {
+  body.register-page {
+    background-size: 300% 300%;
+  }
+  
+  .register-page .left {
+    padding: 2rem 1rem 1rem !important;
+  }
+  
+  .register-page .brand-icon {
+    font-size: 38px !important;
+  }
+  
+  .register-page .brand-name {
+    font-size: 1.75rem !important;
+  }
+  
+  .register-page .brand-text {
+    font-size: 0.95rem !important;
+    max-width: 95%;
+  }
+  
+  .register-page .right {
+    padding: 0 1rem 2.5rem !important;
+  }
+  
+  /* CARD PETIT MOBILE - MÊME COULEUR */
+  .register-page .card {
+    padding: 1.75rem 1.25rem !important;
+    border-radius: 20px !important;
+    background: linear-gradient(18deg, var(--card) 100%, var(--bg-3) 10%) !important;
+  }
+  
+  .register-page .form-title {
+    font-size: 1.3rem !important;
+  }
+  
+  .register-page .form-desc {
+    font-size: 0.8rem !important;
+  }
+
+  .register-page .brand-icon
+  {
+    display: none;
+  }
+  .register-page .brand-name
+  {
+        display: none;
+
+  }
+  
+  .register-page .field input {
+    padding: 13px 40px 13px 14px !important;
+    font-size: 14px !important;
+  }
+  
+  .register-page .eye-wrapper {
+    width: 34px !important;
+    height: 34px !important;
+    right: 10px !important;
+  }
+  
+  .register-page .badr {
+    padding: 12px 14px !important;
+    font-size: 15px !important;
+  }
+}
+
+/* =====================================================
+   TRÈS PETITS MOBILES (≤ 360px)
+===================================================== */
+@media (max-width: 360px) {
+  .register-page .left {
+    padding: 1.5rem 1rem 1rem !important;
+  }
+  
+  .register-page .brand-icon {
+    font-size: 34px !important;
+  }
+  
+  .register-page .brand-name {
+    font-size: 1.5rem !important;
+  }
+  
+  .register-page .brand-text {
+    font-size: 0.9rem !important;
+  }
+  
+  /* CARD TRÈS PETIT MOBILE - MÊME COULEUR */
+  .register-page .card {
+    padding: 1.5rem 1rem !important;
+    border-radius: 18px !important;
+    background: linear-gradient(18deg, var(--card) 100%, var(--bg-3) 10%) !important;
+  }
+  
+  .register-page .field input {
+    padding: 12px 38px 12px 12px !important;
+    font-size: 13px !important;
+  }
+  
+  .register-page .badr {
+    padding: 11px 12px !important;
+    font-size: 14px !important;
+  }
+  
+  .register-page .footer {
+    font-size: 12px !important;
+  }
+}
+
+/* =====================================================
+   ORIENTATION PAYSAGE MOBILE
+===================================================== */
+@media (max-width: 900px) and (orientation: landscape) {
+  body.register-page {
+    height: auto;
+    min-height: 100vh;
+  }
+  
+  .register-page .container {
+    flex-direction: row !important;
+    align-items: center;
+    gap: 1rem !important;
+  }
+  
+  .register-page .left,
+  .register-page .right {
+    width: 50% !important;
+    padding: 1rem !important;
+  
+  }
+  
+  .register-page .brand {
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .register-page .brand-icon {
+    font-size: 32px !important;
+  }
+  
+  .register-page .brand-name {
+    font-size: 1.5rem !important;
+  }
+  
+  .register-page .brand-text {
+    font-size: 0.8rem !important;
+  }
+  
+  /* CARD PAYSAGE - MÊME COULEUR */
+  .register-page .card {
+    padding: 1.5rem !important;
+    max-width: 100% !important;
+    background: linear-gradient(18deg, var(--card) 100%, var(--bg-3) 10%) !important;
+  }
+  
+  .register-page form {
+    gap: 1rem !important;
+  }
+  
+  .register-page .field input {
+    padding: 12px 40px 12px 14px !important;
+  }
+}
+
+/* =====================================================
+   SUCCESS OVERLAY MOBILE (identique au login)
+===================================================== */
+@media (max-width: 480px) {
+  .success-overlay {
+    padding: 1rem;
+  }
+  
+  .success-card {
+    width: 90% !important;
+    max-width: 320px !important;
+    padding: 2rem 1.5rem !important;
+    border-radius: 20px !important;
+    background: radial-gradient(circle at top, #119a8f, #052a3b) !important;
+  }
+  
+  .success-title {
+    font-size: 1.4rem !important;
+    margin-bottom: 0.75rem !important;
+  }
+  
+  .success-text {
+    font-size: 0.95rem !important;
+    line-height: 1.5 !important;
+    margin-bottom: 1.5rem !important;
+  }
+  
+  .success-btn {
+    padding: 0.9rem 2rem !important;
+    font-size: 0.95rem !important;
+  }
+  
+  .success-icons {
+    font-size: 28px !important;
+  }
+  
+  .success-footer {
+    font-size: 18px !important;
+    top: 10px !important;
+  }
+}
+
+/* =====================================================
+   SUPPRESSION DES ANIMATIONS POUR RÉDUCTION DE MOUVEMENT
+===================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .register-page body,
+  .register-page .card,
+  .success-card {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* =====================================================
+   AMÉLIORATIONS TOUCH POUR MOBILE
+===================================================== */
+@media (max-width: 900px) {
+  /* TAILLE MINIMUM POUR LES ÉLÉMENTS TACTILES */
+  .register-page .badr,
+  .register-page .eye-wrapper,
+  .register-page .field input {
+    min-height: 44px;
+  }
+  
+  /* EMPÊCHE LE ZOOM AUTOMATIQUE SUR IOS */
+  .register-page .field input,
+  .register-page .field input[type="email"],
+  .register-page .field input[type="password"],
+  .register-page .field input[type="text"] {
+    font-size: 16px !important;
+  }
+  
+  /* SCROLL SMOOTH */
+  .register-page .container {
+    -webkit-overflow-scrolling: touch;
+  }
+}

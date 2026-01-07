@@ -85,7 +85,7 @@ app.post('/api/generate-quiz', async (req, res) => {
   }
 });
 
-const PORT = 5000;
+const PORT = 5003;
 app.listen(PORT, () => {
   console.log(`🚀 Serveur (Groq) lancé sur le port ${PORT}`);
 });
