@@ -1,0 +1,272 @@
+/* --- 1. TES VARIABLES (Configuration du Thème) --- */
+:root {
+  /* Brand */
+  --primary: #3B82F6;
+  --primary-2: #22C55E;
+  --primary-hover: #2563EB;
+
+  /* Background */
+  --bg-0: #050B1A;
+  --bg-1: #0B2A4A;
+  --bg-2: #0E3A63;
+  --bg-3: #0E6A5A;
+
+  /* Surfaces */
+  --card: rgba(15, 23, 42, 0.82);
+  --card-2: rgba(2, 6, 23, 0.55);
+  --border: rgba(255,255,255,0.10);
+  --border-soft: rgba(255,255,255,0.06);
+
+  /* Text */
+  --text: #EAF2FF;
+  --muted: rgba(234,242,255,0.72);
+  --muted-2: rgba(234,242,255,0.55);
+
+  /* Feedback */
+  --danger: #EF4444;
+  --warning: #F59E0B;
+
+  /* FX */
+  --shadow-sm: 0 10px 24px rgba(0,0,0,0.18);
+  --shadow-md: 0 18px 45px rgba(0,0,0,0.26);
+  --shadow-lg: 0 26px 70px rgba(0,0,0,0.34);
+
+  --r-md: 16px;
+  --r-lg: 22px;
+  --r-xl: 28px;
+
+  --sidebar-w: 270px;
+  --blur: 10px; /* perf-friendly */
+}
+
+/* ===== Reset ===== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { height: 100%; }
+
+body {
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  color: var(--text);
+  /* Création du fond avec tes couleurs bg-0 à bg-3 */
+  background-color: var(--bg-0);
+  background-image: 
+    radial-gradient(circle at 10% 20%, var(--bg-1) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, var(--bg-3) 0%, transparent 40%);
+  background-attachment: fixed; /* Le fond reste fixe au scroll */
+}
+
+/* --- 2. LAYOUT --- */
+.app-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* --- 3. NAVBAR EDUMEET --- */
+.navbar {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  
+  /* Effet verre */
+  background: var(--card-2);
+  backdrop-filter: blur(var(--blur));
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.nav-brand {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  
+  /* 1. On définit le dégradé */
+  background: linear-gradient(90deg, var(--primary), var(--primary-2));
+  
+  /* 2. On applique le clip (standard + version webkit pour Chrome/Safari) */
+  background-clip: text;
+  -webkit-background-clip: text;
+  
+  /* 3. IMPORTANT : On rend le texte transparent pour voir le fond à travers */
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  
+  /* Optionnel : parfois nécessaire pour que le clip s'applique bien sur la boite */
+  display: inline-block; 
+}
+
+/* --- 4. CONTENU PRINCIPAL --- */
+.main-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* --- 5. CARTE DE QUIZ --- */
+.quiz-card {
+  width: 100%;
+  max-width: 480px;
+  padding: 40px;
+  
+  /* Utilisation de tes variables surface */
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  box-shadow: var(--shadow-lg);
+  backdrop-filter: blur(var(--blur));
+}
+
+.quiz-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.quiz-header h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: var(--text);
+}
+
+.quiz-header p {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* --- 6. FORMULAIRE & INPUTS --- */
+.form-group {
+  margin-bottom: 24px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.custom-select {
+  width: 100%;
+  padding: 16px;
+  font-size: 1rem;
+  
+  /* Style Input basé sur tes variables */
+  background-color: var(--card-2);
+  color: var(--text);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--r-md);
+  
+  outline: none;
+  cursor: pointer;
+  appearance: none; /* Reset natif */
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.custom-select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15); /* Couleur primary très transparente */
+}
+
+/* Petite flèche SVG encodée */
+.select-wrapper {
+  position: relative;
+}
+.select-wrapper::after {
+  content: "▼";
+  font-size: 0.7rem;
+  color: var(--muted-2);
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+/* --- 7. BOUTON --- */
+.btn-primary {
+  width: 100%;
+  padding: 18px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: var(--r-md);
+  cursor: pointer;
+  color: white;
+  margin-top: 10px;
+  
+  /* Dégradé utilisant tes variables primary et primary-2 */
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-2) 100%);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  filter: brightness(1.1);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+/* Ajout dans App.css pour les boutons de réponse */
+.options-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.btn-option {
+  padding: 15px;
+  background: var(--card-2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--text);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.2s;
+  text-align: left;
+}
+
+.btn-option:hover {
+  border-color: var(--primary);
+  background: rgba(59, 130, 246, 0.1); /* Légère teinte bleue */
+}
+/* --- Le bouton Exit flottant (EN BAS À GAUCHE) --- */
+.btn-exit {
+  position: fixed;   /* Fixé à l'écran */
+  bottom: 40px;      /* <--- CHANGEMENT ICI : En bas (au lieu de top) */
+  left: 40px;        /* À gauche */
+  
+  width: 50px;       /* Un peu plus gros pour être bien visible */
+  height: 50px;
+  border-radius: 50%;
+  
+  /* Style sombre translucide */
+  background: rgba(15, 23, 42, 0.8); 
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+  backdrop-filter: blur(5px);
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 1000;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.btn-exit:hover {
+  background: #ef4444; /* Rouge au survol */
+  transform: scale(1.1) rotate(90deg);
+  border-color: transparent;
+}
