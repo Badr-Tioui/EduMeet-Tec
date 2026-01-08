@@ -5,7 +5,7 @@ const User = require("../models/User");
 function signToken(user) {
   return jwt.sign(
     { sub: user._id.toString(), role: user.role },
-    process.env.JWT_SECRET,
+    process.env.JWT_SECRETA,
     { expiresIn: "7d" }
   );
 }

@@ -9,7 +9,7 @@ module.exports = function auth(req, res, next) {
       return res.status(401).json({ message: "Token manquant" });
     }
 
-    const payload = jwt.verify(token, process.env.JWT_SECRET);
+    const payload = jwt.verify(token, process.env.JWT_SECRETA);
     req.user = { id: payload.sub, role: payload.role };
     next();
   } catch (err) {
