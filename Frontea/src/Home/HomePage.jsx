@@ -146,7 +146,7 @@ const mobileDrawer = () => {
     btn.setAttribute("aria-expanded", "false");
   };
 
-  // Événements
+  // Événement
   btn.addEventListener("click", toggleMenu);
   overlay.addEventListener("click", closeMenu);
   
