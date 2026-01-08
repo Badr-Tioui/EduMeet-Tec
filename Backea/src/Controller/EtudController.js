@@ -10,13 +10,13 @@ exports.registerEtudiant = async (req, res) => {
   try {
     const { nom, email, numeroEtudiant, password } = req.body;
 
-    const existingUser = await User.findOne({ email });
+    const existingUser = await User.findOne({ email });//Vérifie si un utilisateur avec cet email existe déjà.
     if (existingUser) {
       return res.status(400).json({ success: false, message: "Cet email est déjà utilisé" });
     }
 
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
+    const salt = await bcrypt.genSalt(10);//renforcer le hash 
+    const hashedPassword = await bcrypt.hash(password, salt);//transformer le mot de passe en hash securisé
 
     const newUser = new User({
       nom,
@@ -26,7 +26,7 @@ exports.registerEtudiant = async (req, res) => {
       role: "etudiant",
     });
 
-    await newUser.save();
+    await newUser.save();//Sauvegarder l'etudiant db
 
     const token = jwt.sign({ id: newUser._id, role: newUser.role }, process.env.JWT_SECRET, { expiresIn: "7d" });
 
@@ -55,7 +55,7 @@ exports.login = async (req, res) => {
     const user = await User.findOne({ email });
 if (!user) return res.status(401).json({ success: false, message: "Email ou mot de passe incorrect" });
 
-const isMatch = await bcrypt.compare(password, user.password);
+const isMatch = await bcrypt.compare(password, user.password);//Compare le mot de passe saisi avec le hash stocké.
 if (!isMatch) return res.status(401).json({ success: false, message: "Email ou mot de passe incorrect" });
 
 // Si tout est ok, créer token
@@ -90,7 +90,7 @@ exports.sendVerificationEmail = async (req, res) => {
     user.verificationToken = verificationToken;
     await user.save();
 
-    const url = `http://localhost:3000/verify-email?token=${verificationToken}`;
+    const url = `http://localhost:3000/verify-email?token=${verificationToken}`; //Crée le lien envoyé par email.
 
     await transporter.sendMail({
       from: '"EduMeet 👩‍🎓" <no-reply@edumeet.com>',
@@ -122,7 +122,7 @@ user.resetPasswordToken = resetToken;
 user.resetPasswordExpire = Date.now() + 15 * 60 * 1000;
 await user.save();
 
-// 🔹 Afficher le token dans la console pour test
+// Afficher le token dans la console pour test
 console.log("Token de réinitialisation pour", email, ":", resetToken);
 
 // 4. Lien frontend
@@ -193,7 +193,7 @@ exports.resetPassword = async (req, res) => {
   try {
     const { token, password } = req.body;
 
-    // 1️⃣ Vérifier que le token existe et n'est pas expiré
+    // Vérifier que le token existe et n'est pas expiré
     const user = await User.findOne({
       resetPasswordToken: token,
       resetPasswordExpire: { $gt: Date.now() },
